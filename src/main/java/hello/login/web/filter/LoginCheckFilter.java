@@ -38,7 +38,7 @@ public class LoginCheckFilter implements Filter {
                     // 로그인 페이지로 redirect
                     httpResponse.sendRedirect("/login?redirectURL=" + requestURI);
                     // /login?redirectURL= -> 로그인 후 다시 이전 페이지로 돌아가기 위해 redirectURL 을 파라미터로 넘겨준다.
-                    return;
+                    return; // 여기가 중요, 미인증 사용자는 다음 필터를 타지 않고 종료 // 여기서 끝낼거야 더이상 controller 를 호출하지 않겠다.
                 }
             }
             chain.doFilter(request, response);
